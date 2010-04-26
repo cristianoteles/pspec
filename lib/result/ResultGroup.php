@@ -57,6 +57,10 @@ class ResultGroup implements \Iterator {
         return $count;
     }
 
+    function countResults() {
+        return count($this->results);
+    }
+
     function getExampleGroupName() {
         return $this->exampleGroupName;
     }

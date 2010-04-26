@@ -19,8 +19,9 @@ describe('Classe', function(){
             expect( isset($objeto->segredo) )->should('be equals', false);
         });
 
-        it('teste incompleto.', function() use($objeto) {
-
+        it('teste de expectedException.', function() use($objeto) {
+            expectException('\Exception');
+            throw new \Exception;
         });
 
         it('"todos sabem" deve ser entre 20 e 30.', function() use($objeto) {
@@ -30,6 +31,10 @@ describe('Classe', function(){
 
         it('teste erro.', function() use($objeto) {
             $dois = $um + 1;
+        });
+        
+        it('teste experando exceção.', function() use($objeto) {
+            expectException('\Exception');
         });
     });
 });

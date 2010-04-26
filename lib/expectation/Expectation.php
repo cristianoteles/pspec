@@ -5,6 +5,7 @@ include_once "assertion.php";
 include_once "assertions/BeEquals.php";
 include_once "assertions/BeAnInstanceOf.php";
 include_once "assertions/BeBetween.php";
+include_once "assertions/OnlyHaveInstancesOf.php";
 
 class Expectation {
     
@@ -19,7 +20,8 @@ class Expectation {
         $registeredAssertions = array(
             'be equals' => '\PSpec\BeEquals',
             'be an instance of' => '\PSpec\BeAnInstanceOf',
-            'be between' => '\PSpec\BeBetween'
+            'be between' => '\PSpec\BeBetween',
+            'only have instances of' => '\PSpec\OnlyHaveInstancesOf'
         );
         if(!array_key_exists($assertionName,$registeredAssertions)) {
             throw new Exception('Assertion "' . $assertionName . '" does not exists');
@@ -28,10 +30,6 @@ class Expectation {
         $assertion = new $assertionClass;
         $args[0] = $this->subject;
         $expectationResult = call_user_func_array(array($assertion,'execute'), $args);
-        Example::addExpectationResultToOpenResultGroup($expectationResult);
-    }
-
-    function be_equals($subject, $expectedValue) {
-        
+        Example::addExpectationResultToOpenExampleResult($expectationResult);
     }
 }

@@ -5,20 +5,12 @@ function it($name, $exampleTestFunction) {
     Spec::addExampleToActual(\PSpec\Example::buildExample($name, $exampleTestFunction));
 }
 
-function fail() {
-    echo 'FAIL';
-}
-
-function pass() {
-    echo 'PASS';
-}
-
-function before($beforeFunction) {
-    Spec::getActualExampleGroup()->addExample(ExampleBefore::build($beforeFunction));
-}
-
 function expect($value) {
     return new \PSpec\Expectation($value);
+}
+
+function expectException($exceptionClassName) {
+    \PSpec\Example::addExpectedExceptionToOpenExample($exceptionClassName);
 }
 
 function describe($name, $descriptionFunction ) {
@@ -31,7 +23,7 @@ function describe($name, $descriptionFunction ) {
         Spec::setActualExampleGroup($newExampleGroup);
         $descriptionFunction();
         Spec::emptyActualExampleGroup();
-        \PSpec\PSpec::getInstance()->addExampleGroup($newExampleGroup);
+        \PSpec\PSpec::addExampleGroupToActual($newExampleGroup);
     }
     else {
         $newExampleGroup = \PSpec\ExampleGroup::buildExampleGroup($name);

@@ -11,7 +11,6 @@ class BeBetween implements assertion{
 
         return new ExpectationResult(
             ($subject > $v1 && $subject < $v2),
-            'be between',
             $message
         );
     }

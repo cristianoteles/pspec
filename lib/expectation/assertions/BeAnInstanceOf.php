@@ -9,7 +9,6 @@ class BeAnInstanceOf implements assertion{
 
         return new ExpectationResult(
             ($subject instanceof $expectedClassName),
-            'be_equals',
             $message
         );
     }

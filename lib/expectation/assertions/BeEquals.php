@@ -10,7 +10,6 @@ class BeEquals implements assertion{
 
         return new ExpectationResult(
             ($subject === $expectedValue),
-            'be_equals',
             $message
         );
     }

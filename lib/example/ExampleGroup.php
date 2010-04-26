@@ -33,6 +33,9 @@ class ExampleGroup extends ExampleItem {
         return $s;
     }
 
+    /**
+     * @return ResultGroup
+     */
     function run() {
         $resultGroup = new ResultGroup($this->getName());
         foreach($this->examples as $example) {
